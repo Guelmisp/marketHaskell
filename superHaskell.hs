@@ -23,3 +23,13 @@ formataCentavos :: Preco -> String
 formataCentavos preco = show a ++ "." ++ if p < 10 then "0" ++ show p else show p
     where a = preco `div` 100
           p = preco `mod` 100
+
+-- Passo 5
+tamanhoLinha :: Int
+tamanhoLinha = 30
+
+formataLinha :: (Nome, Preco) -> String
+formataLinha (nome,preco) = nome 
+                          ++ replicate (tamanhoLinha - length nome - length preco') '.' 
+                          ++ preco'
+    where preco' = formataCentavos preco
