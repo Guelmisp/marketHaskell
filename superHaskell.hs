@@ -19,3 +19,7 @@ type Carrinho = [Codigo]
 type Conta = [(Nome)]
 
 -- Passo 4
+formataCentavos :: Preco -> String
+formataCentavos preco = show a ++ "." ++ if p < 10 then "0" ++ show p else show p
+    where a = preco `div` 100
+          p = preco `mod` 100
