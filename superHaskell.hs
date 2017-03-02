@@ -48,7 +48,7 @@ formataTotal :: Preco -> String
 formataTotal preco = "\nTotal" 
                    ++ replicate (tamanhoLinha - 5 - length preco') '.'
                    ++ preco'
-     where preco' = formataCentavos preco
+    where preco' = formataCentavos preco
 
 -- Passo 8
 formataConta :: Conta -> String
@@ -61,7 +61,17 @@ calculoTotal :: Conta -> Preco
 calculoTotal total = sum [p | (n, p) <- total]
 
 -- Passo 10
+procuraCodigo :: Produtos -> Codigo -> (Nome,Preco)
+procuraCodigo prod cod = if resposta == []
+	                     then ("Nao encontrado", 0)
+	                     else head resposta
+	where resposta = [(nome,preco) | (bn,nome,preco) <- prod, cod == bn]
 
+-- Passo 11
+criaConta :: Produtos -> Carrinho -> (Nome,Preco)
+criaConta produtos carrinho = map (procuraCodigo tabela) carrinho 
+
+-- Passo 12
 
 
 
