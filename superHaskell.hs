@@ -32,4 +32,21 @@ formataLinha :: (Nome, Preco) -> String
 formataLinha (nome,preco) = nome 
                           ++ replicate (tamanhoLinha - length nome - length preco') '.' 
                           ++ preco'
+                          ++ novaLinha
     where preco' = formataCentavos preco
+    	  novaLinha = "\n"
+
+-- Passo 6
+formataLinhas :: [(Nome, Preco)] -> String
+formataLinhas [] = []
+formataLinhas ((nome,preco):calda) = 
+        let linha = formataLinha((nome,preco))
+            resto  = formataLinhas(calda)
+            in linha ++ resto
+
+-- Passo 7
+formataTotal :: Preco -> String
+formataTotal preco = "\nTotal" 
+                   ++ replicate (tamanhoLinha - 5 - length preco') '.'
+                   ++ preco'
+     where preco' = formataCentavos preco
