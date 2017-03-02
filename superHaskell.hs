@@ -68,11 +68,12 @@ procuraCodigo prod cod = if resposta == []
 	where resposta = [(nome,preco) | (bn,nome,preco) <- prod, cod == bn]
 
 -- Passo 11
-criaConta :: Produtos -> Carrinho -> (Nome,Preco)
-criaConta produtos carrinho = map (procuraCodigo tabela) carrinho 
+criaConta :: Produtos -> Carrinho -> Conta
+criaConta prod cesta = map (procuraCodigo prod) cesta 
 
 -- Passo 12
-
+fazCompra :: Produtos -> Carrinho -> String
+fazCompra prod cesta = formataConta (criaConta prod cesta)
 
 
 
