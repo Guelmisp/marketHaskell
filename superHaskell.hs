@@ -72,8 +72,8 @@ criaConta :: Produtos -> Carrinho -> Conta
 criaConta prod cesta = map (procuraCodigo prod) cesta 
 
 -- Passo 12
-fazCompra :: Produtos -> Carrinho -> String
-fazCompra prod cesta = formataConta (criaConta prod cesta)
+fazCompra :: Produtos -> Carrinho -> IO ()
+fazCompra prod cesta = putStrLn (formataConta (criaConta prod cesta))
 
 
 
