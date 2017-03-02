@@ -16,7 +16,7 @@ tabelaProdutos = [ (001, "Chocolate", 121)
 
 -- Passo 3
 type Carrinho = [Codigo]
-type Conta = [(Nome)]
+type Conta = [(Nome,Preco)]
 
 -- Passo 4
 formataCentavos :: Preco -> String
@@ -32,9 +32,8 @@ formataLinha :: (Nome, Preco) -> String
 formataLinha (nome,preco) = nome 
                           ++ replicate (tamanhoLinha - length nome - length preco') '.' 
                           ++ preco'
-                          ++ novaLinha
+                          ++ "\n"
     where preco' = formataCentavos preco
-    	  novaLinha = "\n"
 
 -- Passo 6
 formataLinhas :: [(Nome, Preco)] -> String
@@ -50,3 +49,28 @@ formataTotal preco = "\nTotal"
                    ++ replicate (tamanhoLinha - 5 - length preco') '.'
                    ++ preco'
      where preco' = formataCentavos preco
+
+-- Passo 8
+formataConta :: Conta -> String
+formataConta conta = "Comercial Haskell \n\n"
+                   ++ formataLinhas conta
+                   ++ formataTotal (calculoTotal conta)
+
+-- Passo 9
+calculoTotal :: Conta -> Preco
+calculoTotal total = sum [p | (n, p) <- total]
+
+-- Passo 10
+
+
+
+
+
+
+
+
+
+
+
+
+
